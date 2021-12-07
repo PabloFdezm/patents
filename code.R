@@ -12,12 +12,21 @@ patents_2000 = patents_2000 %>%
   )
 
 for (i in 1:(branches+1)) {
-  write.table(
-    patents_2000 %>% filter(n == i) %>% select(complete_id),
-    paste0('branches/patent_branch',i,'.txt'),
-    sep = '\t',
-    row.names = FALSE,
-    col.names = FALSE
-  )
+  if (i %% 2 == 0) {
+    write.table(
+      patents_2000 %>% filter(n == i) %>% select(complete_id),
+      paste0('branches/branch_A',100+i,'.txt'),
+      sep = '\t',
+      row.names = FALSE,
+      col.names = FALSE
+    )
+  }else{
+    write.table(
+      patents_2000 %>% filter(n == i) %>% select(complete_id),
+      paste0('branches/branch_B',100+i,'.txt'),
+      sep = '\t',
+      row.names = FALSE,
+      col.names = FALSE
+      )
+  }
 }
-
