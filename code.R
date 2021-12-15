@@ -14,7 +14,7 @@ patents_2000 = patents_2000 %>%
 for (i in 1:(branches+1)) {
   if (i %% 2 == 0) {
     write.table(
-      patents_2000 %>% filter(n == i) %>% select(complete_id),
+      patents_2000 %>% filter(n == i) %>% select(patent_id),
       paste0('branches/A/branch_A',100+i,'.txt'),
       sep = '\t',
       row.names = FALSE,
@@ -22,7 +22,7 @@ for (i in 1:(branches+1)) {
     )
   }else{
     write.table(
-      patents_2000 %>% filter(n == i) %>% select(complete_id),
+      patents_2000 %>% filter(n == i) %>% select(patent_id),
       paste0('branches/B/branch_B',100+i,'.txt'),
       sep = '\t',
       row.names = FALSE,
@@ -50,19 +50,21 @@ patents_1990 = patents_1990 %>%
 for (i in 1:(branches+1)) {
   if (i %% 2 == 0) {
     write.table(
-      patents_1990 %>% filter(n == i) %>% select(complete_id),
+      patents_1990 %>% filter(n == i) %>% select(patent_id),
       paste0('branches/A/branch_A',100+i,'.txt'),
       sep = '\t',
       row.names = FALSE,
-      col.names = FALSE
+      col.names = FALSE,
+      quote = FALSE
     )
   }else{
     write.table(
-      patents_1990 %>% filter(n == i) %>% select(complete_id),
+      patents_1990 %>% filter(n == i) %>% select(patent_id),
       paste0('branches/B/branch_B',100+i,'.txt'),
       sep = '\t',
       row.names = FALSE,
-      col.names = FALSE
+      col.names = FALSE,
+      quote = FALSE
     )
   }
 }
