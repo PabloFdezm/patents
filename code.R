@@ -68,3 +68,15 @@ for (i in 1:(branches+1)) {
     )
   }
 }
+
+test1 <- matrix(NA)
+test2 <- matrix(NA)
+
+
+for (i in 1:(branches+1)) {
+  test1[i] <- nrow(patents_1990 %>% filter(n == i) %>% select(complete_id))
+}
+
+test1
+
+write_csv(patents_1990, 'patents_1990_b.csv')
