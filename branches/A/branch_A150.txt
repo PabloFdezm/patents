@@ -3334,7 +3334,6 @@ US9711543B2
 US9711544B2
 US9711545B2
 US9711547B2
-US9711533FinFET devices having different source/drain proximities for input/output devices and non-input/output devices and the method of fabrication thereof
 US9711559B2
 US9711548B2
 US9711549B2

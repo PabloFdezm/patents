@@ -45,12 +45,26 @@ patents_1990 = patents_1990 %>%
          n = c(rep(1:branches, times = 1, each = max_derwent), rep(branches+1,branches_res))
   )
 
+kinds <- patents_1990 %>%
+  distinct(kind) %>%
+  .[[1]]
 
+kinds_no <- c(kinds[7], kinds[8], kinds[9], kinds[11], kinds[12])
+
+`%ni%` <- base::Negate(`%in%`)
+
+kinds_correct <- kinds[kinds %ni% kinds_no]
+
+patents <- patents_1990 %>%
+  filter(kind %ni% kinds_no) %>%
+  filter(type != 'design')
 
 for (i in 1:(branches+1)) {
   if (i %% 2 == 0) {
     write.table(
-      patents_1990 %>% filter(n == i) %>% select(complete_id),
+      patents %>% 
+        filter(n == i)%>%
+        select(complete_id),
       paste0('branches/A/branch_A',100+i,'.txt'),
       sep = '\t',
       row.names = FALSE,
@@ -59,7 +73,9 @@ for (i in 1:(branches+1)) {
     )
   }else{
     write.table(
-      patents_1990 %>% filter(n == i) %>% select(complete_id),
+      patents %>%
+        filter(n == i)%>%
+        select(complete_id),
       paste0('branches/B/branch_B',100+i,'.txt'),
       sep = '\t',
       row.names = FALSE,
@@ -69,14 +85,5 @@ for (i in 1:(branches+1)) {
   }
 }
 
-test1 <- matrix(NA)
-test2 <- matrix(NA)
 
 
-for (i in 1:(branches+1)) {
-  test1[i] <- nrow(patents_1990 %>% filter(n == i) %>% select(complete_id))
-}
-
-test1
-
-write_csv(patents_1990, 'patents_1990_b.csv')
