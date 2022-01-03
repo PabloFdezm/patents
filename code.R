@@ -53,11 +53,8 @@ kinds_no <- c(kinds[7], kinds[8], kinds[9], kinds[11], kinds[12])
 
 `%ni%` <- base::Negate(`%in%`)
 
-kinds_correct <- kinds[kinds %ni% kinds_no]
-
 patents <- patents_1990 %>%
-  filter(kind %ni% kinds_no) %>%
-  filter(type != 'design')
+  filter(kind %ni% kinds_no)
 
 for (i in 1:(branches+1)) {
   if (i %% 2 == 0) {
@@ -84,6 +81,5 @@ for (i in 1:(branches+1)) {
     )
   }
 }
-
 
 
